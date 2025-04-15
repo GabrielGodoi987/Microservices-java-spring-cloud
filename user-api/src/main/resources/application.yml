@@ -14,4 +14,4 @@ spring:
   profiles:
     active: test
 server:
-  port: {PORT:8000}
+  port: 8000

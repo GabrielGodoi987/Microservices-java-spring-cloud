@@ -13,6 +13,6 @@ public interface UserFeign {
     @GetMapping(value = "/api/users/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id);
 
-    @GetMapping(value = "/api/users")
+    @GetMapping
     public ResponseEntity<List<User>> findAll();
 }

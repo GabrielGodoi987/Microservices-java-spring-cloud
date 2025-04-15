@@ -5,10 +5,10 @@ import lombok.*;
 
 import java.io.Serializable;
 
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 public class PayRoll implements Serializable {
     private String workerName;
     private String description;
