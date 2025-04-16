@@ -1,0 +1,52 @@
+services:
+  eureka-server:
+    build: Eureka-server/.
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
+    networks:
+      - microservices
+  
+  user-api:
+    build: User-api/.
+    ports:
+      - "8000:8000"
+    expose:
+      - "8080"
+    environment:
+      - EUREKA_URL:http://eureka-server:8761/eureka/
+    networks:
+      - microservices
+    depends_on:
+      - eureka-server
+    
+  payroll-api:
+    build: Payroll-api/.
+    ports:
+      - "8001:8001"
+    expose:
+      - "8080"
+    environment:
+      - EUREKA_URL:http://eureka-server:8761/eureka/
+    networks:
+      - microservices
+    depends_on:
+      - eureka-server
+  
+  api-gateway:
+    build: Api-gateway/.
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    environment:
+      - EUREKA_URL:http://eureka-server:8761/eureka/
+    networks:
+      - microservices
+    depends_on:
+      - eureka-server
+      
+networks:
+  microservices:
+    driver: bridge
